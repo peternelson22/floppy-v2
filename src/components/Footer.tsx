@@ -1,12 +1,16 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer className='bg-neutral text-neutral-content p-2 sm:p-3'>
-      <div className='align-element footer items-center '>
-        <div className='items-center grid grid-flow-col mx-auto sm:place-content-between '>
-          <h1 className=' btn btn-info text-2xl italic'>FP</h1>
+      <div className='align-element footer '>
+        <div className='items-center grid grid-flow-col mx-auto sm:mx-0 sm:place-content-between '>
+          <Link to='/' className='link link-info text-2xl italic'>
+            FP
+          </Link>
           <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
         </div>
-        <div className='grid-flow-col gap-3 md:place-self-center md:justify-self-end mx-auto'>
+        <div className='grid-flow-col gap-3 md:place-self-center md:justify-self-end mx-auto sm:mx-0'>
           <a href='https://www.twitter.com/PeteNelsonEQ' target='_blank' rel=''>
             <svg
               xmlns='http://www.w3.org/2000/svg'
