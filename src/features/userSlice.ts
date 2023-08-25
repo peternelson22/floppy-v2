@@ -1,7 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
-import type { RootState } from '../store';
-
+import { Reducer, createSlice } from '@reduxjs/toolkit';
 const themes = { retro: 'retro', dark: 'dark' };
 
 const getThemeFromLocalStorage = () => {
@@ -27,9 +24,6 @@ const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer;
+export default userSlice.reducer as Reducer<UserState>;
 
 export const { toggleTheme } = userSlice.actions;
-
-export const useUserSelector = () =>
-  useSelector((state: RootState) => state.user);

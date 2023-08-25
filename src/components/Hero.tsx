@@ -10,9 +10,10 @@ const Hero = () => {
   return (
     <section className='grid md:grid-cols-2 gap-10 items-center'>
       <div>
-        <h1 className='max-w-4xl text-4xl sm:text-5xl font-bold tracking-tight'>
-          We are changing{' '}
-          <span className='text-info underline p-2 font-mono tracking-wide'>
+        <h1 className='max-w-4xl text-2xl sm:text-5xl font-bold tracking-tight'>
+          We are changing
+          <span className='text-info underline text-3xl sm:text-6xl animate-pulse  p-2 font-mono tracking-wide'>
+            {' '}
             Akube
           </span>
           shopping

@@ -2,11 +2,11 @@ import { NavLink } from 'react-router-dom';
 import { FaBarsStaggered } from 'react-icons/fa6';
 import { BsCart3, BsMoonFill, BsSunFill } from 'react-icons/bs';
 import Navlinks from './NavLinks';
-import { useDispatch } from 'react-redux';
-import { toggleTheme, useUserSelector } from '../features/userSlice';
+import { useAppDispatch } from '../features/hooks/app';
+import { toggleTheme } from '../features/userSlice';
 
 const Navbar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   return (
     <nav className='bg-base-200'>
       <div className='navbar align-element'>

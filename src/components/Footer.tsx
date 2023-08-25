@@ -1,12 +1,12 @@
 const Footer = () => {
   return (
-    <footer className='bg-neutral text-neutral-content p-4'>
+    <footer className='bg-neutral text-neutral-content p-2 sm:p-3'>
       <div className='align-element footer items-center '>
-        <div className='items-center grid-flow-col'>
+        <div className='items-center grid grid-flow-col mx-auto sm:place-content-between '>
           <h1 className=' btn btn-info text-2xl italic'>FP</h1>
           <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
         </div>
-        <div className='grid-flow-col gap-4 md:place-self-center md:justify-self-end'>
+        <div className='grid-flow-col gap-3 md:place-self-center md:justify-self-end mx-auto'>
           <a href='https://www.twitter.com/PeteNelsonEQ' target='_blank' rel=''>
             <svg
               xmlns='http://www.w3.org/2000/svg'
