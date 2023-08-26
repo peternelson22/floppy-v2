@@ -12,6 +12,8 @@ import {
   Products,
   Register,
 } from './pages';
+import { loader as landingLoader } from './pages/home';
+import { loader as productLoader } from './pages/product';
 
 const router = createBrowserRouter([
   {
@@ -19,10 +21,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <Home />, loader: landingLoader },
       { path: 'about', element: <About /> },
       { path: 'products', element: <Products /> },
-      { path: 'products/:id', element: <Product /> },
+      { path: 'products/:id', element: <Product />, loader: productLoader },
       { path: 'cart', element: <Cart /> },
       { path: 'checkout', element: <Checkout /> },
       { path: 'orders', element: <Orders /> },
