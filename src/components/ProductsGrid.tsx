@@ -16,11 +16,13 @@ const ProductsGrid = () => {
           <img
             src={image}
             alt={title}
-            className='rounded-xl h-64 md:h-48 w-full object-cover'
+            className='rounded-xl h-auto md:h-48 w-full object-cover'
           />
         </figure>
         <div className='card-body items-center text-center'>
-          <h2 className='card-title capitalize tracking-wider'>{title}</h2>
+          <h4 className='card-title capitalize tracking-wide whitespace-nowrap'>
+            {title}
+          </h4>
           <span className='text-info'>{formatPrice(price)}</span>
         </div>
       </Link>
@@ -28,7 +30,7 @@ const ProductsGrid = () => {
   });
 
   return (
-    <div className='pt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-3'>
+    <div className='pt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3'>
       {content}
     </div>
   );

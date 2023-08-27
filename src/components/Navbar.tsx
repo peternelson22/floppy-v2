@@ -2,11 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { FaBarsStaggered } from 'react-icons/fa6';
 import { BsCart3, BsMoonFill, BsSunFill } from 'react-icons/bs';
 import Navlinks from './NavLinks';
-import { useAppDispatch } from '../features/hooks/app';
+import { useAppDispatch, useCartSelector } from '../features/hooks/app';
 import { toggleTheme } from '../features/userSlice';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
+  const { numItemsInCart } = useCartSelector();
+
   return (
     <nav className='bg-base-200'>
       <div className='navbar align-element'>
@@ -44,7 +46,7 @@ const Navbar = () => {
             <div className='indicator'>
               <BsCart3 className='h-6 w-6' />
               <span className='badge badge-info badge-sm indicator-item'>
-                3
+                {numItemsInCart}
               </span>
             </div>
           </NavLink>

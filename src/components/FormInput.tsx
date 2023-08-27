@@ -1,11 +1,20 @@
 type Props = {
   name: string;
   type: string;
-  label: string;
+  label?: string;
   defaultValue?: string;
+  size?: string;
+  placeholder?: string;
 };
 
-const FormInput = ({ name, label, type, defaultValue }: Props) => {
+const FormInput = ({
+  name,
+  label,
+  type,
+  defaultValue,
+  size,
+  placeholder,
+}: Props) => {
   return (
     <div className='form-control w-full max-w-xs'>
       <label className='label'>
@@ -15,7 +24,8 @@ const FormInput = ({ name, label, type, defaultValue }: Props) => {
         type={type}
         name={name}
         defaultValue={defaultValue}
-        className='input input-bordered '
+        placeholder={placeholder}
+        className={`input input-bordered ${size}`}
       />
     </div>
   );

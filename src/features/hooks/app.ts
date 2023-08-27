@@ -8,3 +8,6 @@ export const useAppDispatch: DispatchFunc = useDispatch;
 
 export const useUserSelector = () =>
   useAppSelector((state: RootState) => state.user);
+
+export const useCartSelector = () =>
+  useAppSelector((state: RootState) => state.cart);

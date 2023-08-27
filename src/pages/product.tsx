@@ -1,6 +1,8 @@
 import { Link, useLoaderData } from 'react-router-dom';
 import { customFetch, formatPrice } from '../utils';
 import { useState } from 'react';
+import { useAppDispatch } from '../features/hooks/app';
+import { addItem } from '../features/cartSlice';
 
 export const loader = async ({ params }: any) => {
   const res = await customFetch(`products/${params.id}`);
@@ -10,12 +12,27 @@ export const loader = async ({ params }: any) => {
 };
 
 const Product = () => {
+  const dispatch = useAppDispatch();
+
   const product = useLoaderData() as ProductsData;
   const { image, title, price, description, colors, company } =
     product.attributes;
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
 
+  const cartProduct = {
+    cartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    amount,
+    productColor,
+    company,
+  };
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
   const handleAmount = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setAmount(parseInt(e.target.value));
   };
@@ -77,7 +94,7 @@ const Product = () => {
               </h4>
             </label>
             <select
-              className='select select-secondary select-bordered select-md'
+              className='select select-info select-bordered select-md'
               value={amount}
               onChange={handleAmount}
             >
@@ -88,10 +105,7 @@ const Product = () => {
           </div>
           {/* CART BUTTON */}
           <div className='mt-6 '>
-            <button
-              className='btn btn-info btn-md'
-              onClick={() => console.log('add to bag')}
-            >
+            <button className='btn btn-info btn-md' onClick={addToCart}>
               Add to bag
             </button>
           </div>
