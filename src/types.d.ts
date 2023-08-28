@@ -5,11 +5,13 @@ type Links = {
 };
 type Action = Object;
 type AsyncAction = any;
+type State = any;
 
 type Dispatch = (a: Action | AsyncAction) => any;
 
 type Store = {
   dispatch: Dispatch;
+  getState: () => State;
 };
 
 interface User {

@@ -18,6 +18,8 @@ import { loader as productsLoader } from './pages/products';
 import { action as registerAction } from './pages/register';
 import { action as loginAction } from './pages/login';
 import { store } from './store';
+import { loader as checkoutLoader } from './pages/checkout';
+import { action as checkoutAction } from './components/CheckoutForm';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +32,13 @@ const router = createBrowserRouter([
       { path: 'products', element: <Products />, loader: productsLoader },
       { path: 'products/:id', element: <Product />, loader: productLoader },
       { path: 'cart', element: <Cart /> },
-      { path: 'checkout', element: <Checkout /> },
+      {
+        path: 'checkout',
+        element: <Checkout />,
+        //@ts-ignore
+        loader: checkoutLoader(store),
+        action: checkoutAction(store),
+      },
       { path: 'orders', element: <Orders /> },
     ],
   },

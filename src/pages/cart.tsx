@@ -9,7 +9,11 @@ const Cart = () => {
   const { numItemsInCart } = useCartSelector();
 
   if (numItemsInCart === 0) {
-    return <SectionTitle text='Your cart is empty' />;
+    return (
+      <div className='page'>
+        <SectionTitle text='Your cart is empty' />
+      </div>
+    );
   }
   return (
     <div className='page'>
