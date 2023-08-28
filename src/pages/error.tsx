@@ -8,7 +8,7 @@ const ErrorPage = () => {
       return (
         <div className='grid min-h-[100vh] place-items-center px-8'>
           <div className='text-center'>
-            <p className='font-bold text-5xl md:text-8xl text-secondary'>404</p>
+            <p className='font-bold text-5xl md:text-8xl text-info'>404</p>
             <h1 className='text-2xl md:text-4xl tracking-widest font-serif mt-2'>
               Page not found
             </h1>
@@ -16,7 +16,7 @@ const ErrorPage = () => {
               Sorry, we can't find the page your are lookin for...
             </p>
             <div className='mt-4'>
-              <Link to='/' className='btn btn-secondary'>
+              <Link to='/' className='btn btn-info'>
                 Back Home
               </Link>
             </div>
@@ -29,11 +29,11 @@ const ErrorPage = () => {
   return (
     <div className='min-h-[100vh] grid place-items-center px-8'>
       <div className='text-center'>
-        <p className='text-3xl text-secondary tracking-wider font-serif'>
+        <p className='text-3xl text-info tracking-wider font-serif'>
           Something went wrong
         </p>
         <div className='mt-4'>
-          <Link to='/' className='btn btn-secondary'>
+          <Link to='/' className='btn btn-info'>
             Back Home
           </Link>
         </div>
