@@ -1,4 +1,5 @@
 import { Reducer, createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 const themes = { retro: 'retro', dark: 'dark' };
 
 const getThemeFromLocalStorage = () => {
@@ -7,7 +8,13 @@ const getThemeFromLocalStorage = () => {
   return theme;
 };
 
+const getUserFromLocalStorage = () => {
+  //@ts-ignore
+  return JSON.parse(localStorage.getItem('user')) || null;
+};
+
 const initialState: UserState = {
+  user: getUserFromLocalStorage(),
   theme: getThemeFromLocalStorage(),
 };
 
@@ -21,9 +28,19 @@ const userSlice = createSlice({
       document.documentElement.setAttribute('data-theme', state.theme);
       localStorage.setItem('theme', state.theme);
     },
+    loginUser: (state, action) => {
+      const user = { ...action.payload.user, token: action.payload.jwt };
+      state.user = user;
+      localStorage.setItem('user', JSON.stringify(user));
+    },
+    logoutUser: (state) => {
+      state.user = null;
+      localStorage.removeItem('user');
+      toast.success('Logged out successfully');
+    },
   },
 });
 
 export default userSlice.reducer as Reducer<UserState>;
 
-export const { toggleTheme } = userSlice.actions;
+export const { toggleTheme, loginUser, logoutUser } = userSlice.actions;

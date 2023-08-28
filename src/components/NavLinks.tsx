@@ -8,12 +8,16 @@ const links: Links[] = [
 ];
 
 import { NavLink } from 'react-router-dom';
+import { useUserSelector } from '../features/hooks/app';
 
 const Navlinks = () => {
+  const { user } = useUserSelector();
   return (
     <>
       {links.map((link) => {
         const { id, text, url } = link;
+        if ((url === 'checkout' || url === 'orders') && !user) return null;
+
         return (
           <li key={id}>
             <NavLink to={url} className='capitalize'>

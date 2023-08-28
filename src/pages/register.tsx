@@ -1,6 +1,29 @@
-import { Form, Link } from 'react-router-dom';
+import { ActionFunction, Form, Link, redirect } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import SubmitBtn from '../components/SubmitBtn';
+import { customFetch } from '../utils';
+import { toast } from 'react-toastify';
+
+export const action: ActionFunction = async ({
+  request,
+}: {
+  request: Request;
+}) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  try {
+    await customFetch.post('/auth/local/register', data);
+    toast.success('Successfully registered');
+    return redirect('/login');
+  } catch (error) {
+    const errorMessage =
+      // @ts-ignore
+      error?.response?.data?.error?.message ||
+      'please double check your credentials';
+    toast.error(errorMessage);
+    return null;
+  }
+};
 
 const Register = () => {
   return (

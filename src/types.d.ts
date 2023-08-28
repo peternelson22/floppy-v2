@@ -3,8 +3,20 @@ type Links = {
   url: string;
   text: string;
 };
+type Action = Object;
+type AsyncAction = any;
 
+type Dispatch = (a: Action | AsyncAction) => any;
+
+type Store = {
+  dispatch: Dispatch;
+};
+
+interface User {
+  username: string;
+}
 interface UserState {
+  user: User | null;
   theme: string;
 }
 
