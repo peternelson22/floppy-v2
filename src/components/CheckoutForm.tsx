@@ -4,9 +4,10 @@ import SubmitBtn from './SubmitBtn';
 import { customFetch, formatPrice } from '../utils';
 import { clearCart } from '../features/cartSlice';
 import { toast } from 'react-toastify';
+import { QueryClient } from '@tanstack/react-query';
 
 export const action =
-  (store: Store) =>
+  (store: Store, queryClient: QueryClient) =>
   async ({ request }: { request: Request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData);
@@ -31,6 +32,7 @@ export const action =
           },
         }
       );
+      queryClient.removeQueries(['orders']);
       store.dispatch(clearCart());
       toast.success('order placed successfully');
       return redirect('/orders');
@@ -42,6 +44,9 @@ export const action =
         'there was an error placing your order';
 
       toast.error(errorMessage);
+      //@ts-ignore
+      if (error?.response?.status === 401 || 403) return redirect('/login');
+
       return null;
     }
   };

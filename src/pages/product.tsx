@@ -3,13 +3,24 @@ import { customFetch, formatPrice } from '../utils';
 import { useState } from 'react';
 import { useAppDispatch } from '../features/hooks/app';
 import { addItem } from '../features/cartSlice';
+import { QueryClient } from '@tanstack/react-query';
 
-export const loader = async ({ params }: any) => {
-  const res = await customFetch(`products/${params.id}`);
-
-  const product = res.data.data;
-  return product;
+const singleProductQuery = (id: any) => {
+  return {
+    queryKey: ['singleProduct', id],
+    queryFn: () => customFetch(`products/${id}`),
+  };
 };
+
+export const loader =
+  (queryClient: QueryClient) =>
+  async ({ params }: any) => {
+    const res = await queryClient.ensureQueryData(
+      singleProductQuery(params.id)
+    );
+    const product = res.data.data;
+    return product;
+  };
 
 const Product = () => {
   const dispatch = useAppDispatch();
